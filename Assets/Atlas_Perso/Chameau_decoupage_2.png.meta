@@ -1,0 +1,396 @@
+fileFormatVersion: 2
+guid: 379b66b9dcdf15742b621f69139604ba
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6572064443545427381
+    second: Chameau_decoupage_2_0
+  - first:
+      213: 6226678744065135840
+    second: Chameau_decoupage_2_1
+  - first:
+      213: 4554019498984711738
+    second: Chameau_decoupage_2_2
+  - first:
+      213: 1849127196775800187
+    second: Chameau_decoupage_2_3
+  - first:
+      213: -1342077559160308627
+    second: Chameau_decoupage_2_4
+  - first:
+      213: 7943356232929141161
+    second: Chameau_decoupage_2_5
+  - first:
+      213: 6383066467867100504
+    second: Chameau_decoupage_2_6
+  - first:
+      213: 441277698124704580
+    second: Chameau_decoupage_2_7
+  - first:
+      213: 910657797183584802
+    second: Chameau_decoupage_2_8
+  - first:
+      213: 8912651793597354380
+    second: Chameau_decoupage_2_9
+  - first:
+      213: 8911670226397902827
+    second: Chameau_decoupage_2_10
+  - first:
+      213: -4097672140948420388
+    second: Chameau_decoupage_2_11
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Chameau_decoupage_2_0
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 690
+        width: 507
+        height: 338
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b42ef7975365bc4a0800000000000000
+      internalID: -6572064443545427381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chameau_decoupage_2_1
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 772
+        width: 248
+        height: 140
+      alignment: 9
+      pivot: {x: 0.28985006, y: 0.18590131}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e45a7ec35b996650800000000000000
+      internalID: 6226678744065135840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chameau_decoupage_2_2
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 355
+        width: 110
+        height: 241
+      alignment: 9
+      pivot: {x: 0.8109274, y: 0.77031815}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a36af292b90233f30800000000000000
+      internalID: 4554019498984711738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chameau_decoupage_2_3
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 475
+        width: 222
+        height: 272
+      alignment: 9
+      pivot: {x: 0.14785656, y: 0.19462563}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7dd55c636b69a910800000000000000
+      internalID: 1849127196775800187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chameau_decoupage_2_4
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 287
+        width: 116
+        height: 146
+      alignment: 9
+      pivot: {x: 0.52808076, y: 0.812347}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6cf931129bff5de0800000000000000
+      internalID: -1342077559160308627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chameau_decoupage_2_5
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 277
+        width: 89
+        height: 152
+      alignment: 9
+      pivot: {x: 0.68299675, y: 0.8643068}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a1602c78687c3e60800000000000000
+      internalID: 7943356232929141161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chameau_decoupage_2_6
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 269
+        width: 63
+        height: 159
+      alignment: 9
+      pivot: {x: 0.5517045, y: 0.838025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8550de23225359850800000000000000
+      internalID: 6383066467867100504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chameau_decoupage_2_7
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 274
+        width: 82
+        height: 183
+      alignment: 9
+      pivot: {x: 0.51986325, y: 0.85599256}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44b660c7abbbf1600800000000000000
+      internalID: 441277698124704580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chameau_decoupage_2_8
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 66
+        width: 72
+        height: 169
+      alignment: 9
+      pivot: {x: 0.22855695, y: 0.8951199}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22a3111117e43ac00800000000000000
+      internalID: 910657797183584802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chameau_decoupage_2_9
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 66
+        width: 122
+        height: 153
+      alignment: 9
+      pivot: {x: 0.21965653, y: 0.89386034}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c815e14c59910bb70800000000000000
+      internalID: 8912651793597354380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chameau_decoupage_2_10
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 60
+        width: 68
+        height: 164
+      alignment: 9
+      pivot: {x: 0.3562954, y: 0.8773737}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be73fd7dadc9cab70800000000000000
+      internalID: 8911670226397902827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chameau_decoupage_2_11
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 76
+        width: 84
+        height: 159
+      alignment: 9
+      pivot: {x: 0.22855704, y: 0.85851127}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd841c0f5e42227c0800000000000000
+      internalID: -4097672140948420388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
