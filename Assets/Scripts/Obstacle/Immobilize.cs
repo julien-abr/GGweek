@@ -5,7 +5,7 @@ public class bearTrap : MonoBehaviour
 {
     public PlayerMovement playerMovement;
     [SerializeField] float slowDuration = 1f;
-    [SerializeField] float slowAmount = 5f;
+    [SerializeField] float slowAmount = 11f;
     private bool isTrapping = false;
 
     void OnTriggerEnter2D(Collider2D truc)

@@ -7,7 +7,7 @@ public class BoulderRoll : MonoBehaviour
 
     // Il faut 1 "CIRCLE COLLIDER 2D" pour mettre autour du rocher ET un "TRIGGER" en forme de rectangle à placer là ou le joueur passera
     [SerializeField] float slowDuration = 2f;
-    [SerializeField] float slowAmount = 1f;
+    [SerializeField] float slowAmount = 3f;
     public float speed = 1f;    // Vitesse du rocher : Valeur positive pour aller a droite, valeur négatives pour aller à gauche
     private Rigidbody2D rb;     // Le rigidbody du boulet
     private bool go;            // Booléen qui servira à déclencher 

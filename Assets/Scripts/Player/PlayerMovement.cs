@@ -9,11 +9,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public DashState dashState;
-    private float jump = 7.75f;
+    [SerializeField] float jump = 7.75f;
     //private string playerMode = "default";
     private bool _canJump = true;
     private float dashTimer;
-    private float dashLength = 20f;
+    [SerializeField] float dashLength = 20f;
 
     public Vector2 savedVelocity;
 
@@ -21,7 +21,8 @@ public class PlayerMovement : MonoBehaviour
     SpriteRenderer sr;
     Rigidbody2D rb;
 
-    private float _speedMultiplier = 11f;
+    [SerializeField] float _speedMultiplier = 11f;
+    private float maxSpeedMultiplier = 11f;
 
     void Start()
     {
@@ -135,6 +136,18 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(timeToWait);
         sr.color = Color.white;
         jump = 7.75f;
+    }
+
+    public void TakeSlow(float amount, float duration)
+    {
+        _speedMultiplier -= amount;
+        StartCoroutine(SlowCoroutine(duration));
+    }
+
+    IEnumerator SlowCoroutine(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        _speedMultiplier = maxSpeedMultiplier;
     }
 
     public enum DashState
