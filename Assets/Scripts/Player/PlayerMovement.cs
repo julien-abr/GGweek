@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 //
@@ -23,9 +24,12 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] float _speedMultiplier = 11f;
     private float maxSpeedMultiplier = 11f;
+    private PlayerController playerController;
+
 
     void Start()
     {
+        playerController = new PlayerController();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         
@@ -75,6 +79,11 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        playerController.Inputs.Transfo1top.started += Action_started;
+        /*var left = 0f;
+        left = playerController.Inputs.Left.ReadValue<float>();
+        Debug.Log(left);*/
+
         float x = Input.GetAxis("Horizontal");
         x *= _speedMultiplier;
         if ((Input.GetAxis("Jump") > 0) && (_canJump))
@@ -155,5 +164,10 @@ public class PlayerMovement : MonoBehaviour
         Ready,
         Dashing,
         Cooldown
+    }
+
+    private void Action_started(InputAction.CallbackContext aaa)
+    {
+        Debug.Log("bird");
     }
 }

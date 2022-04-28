@@ -48,11 +48,9 @@ public class RoomConfiguration : MonoBehaviour
         if (Rooms.FirstOrDefault(i => i.Coord == coord) != null) return false;
 
         var nextRoomWithDoor = CheckNextRooms(coord);
-
+        var roomAround = new List<Open>();
         if(nextRoomWithDoor != null)
         {
-            var roomAround = new List<Open>();
-
             foreach (Open open in nextRoomWithDoor)
             {
                 Room.FindMatch(open);
@@ -62,7 +60,13 @@ public class RoomConfiguration : MonoBehaviour
 
         var targetedRoomConf = RoomConfigurations
             .Where(i => i.Opens.Contains(neededOpen))
-            //.Where(i => !i.Opens.Contains()
+            //.Where(i => {
+            //    foreach(var el in roomAround)
+            //    {
+            //        if(i.Opens.Contains(el)) return true;
+            //    }
+            //    return false;
+            //})
             .ToList()
             .PickRandom();
 
