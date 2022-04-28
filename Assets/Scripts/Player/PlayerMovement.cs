@@ -29,11 +29,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("For Sound")]
 
     private Rigidbody2D rb;
-    private SpriteRenderer skin;
     private Animator anim;
     private Collider2D monCollider;
-
-    []
 
     // Premi�re fonction qui aura lieu qu'une seule fois, quand on lancera le jeu
     void Start()
@@ -41,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
         // On commence par r�cup�rer les composants (ceux qu'on a d�clar� au dessus)
         rb = gameObject.GetComponent<Rigidbody2D>();
         normalGravity = rb.gravityScale;
-        skin = gameObject.GetComponent<SpriteRenderer>();
         monCollider = gameObject.GetComponent<Collider2D>();
         anim = gameObject.GetComponent<Animator>();
 

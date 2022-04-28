@@ -222,7 +222,7 @@ Animator:
   m_GameObject: {fileID: 9177685978246142353}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 42ed4932d8122d04daedfaa075b26f1f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -272,11 +272,6 @@ MonoBehaviour:
   collisionLayers:
     serializedVersion: 2
     m_Bits: 0
-  firePoint: {fileID: 0}
-  bulletPrefab: {fileID: 0}
-  reloadTime: 0.5
-  runEffect: {fileID: 0}
-  dustEffect: {fileID: 0}
   dashEffect: {fileID: 0}
 --- !u!61 &1754564612534512440
 BoxCollider2D:

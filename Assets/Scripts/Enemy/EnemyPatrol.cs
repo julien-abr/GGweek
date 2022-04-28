@@ -47,10 +47,12 @@ public class EnemyPatrol : MonoBehaviour
 
         if (direction == 1f)
         {
+            transform.Rotate(0, 180, 0);
         }
 
         if (direction == -1f)
         {
+            transform.Rotate(0, 180, 0);
         }
 
         rb.velocity = new Vector2(direction * speed, rb.velocity.y);
