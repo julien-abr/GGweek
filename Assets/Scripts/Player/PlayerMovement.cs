@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _canJump = true;
     private float dashTimer;
     [SerializeField] float dashLength = 20f;
+    [SerializeField] InputActionReference moveActionReference;
 
     public Vector2 savedVelocity;
 
@@ -24,12 +25,10 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] float _speedMultiplier = 11f;
     private float maxSpeedMultiplier = 11f;
-    private PlayerController playerController;
 
 
     void Start()
     {
-        playerController = new PlayerController();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         
@@ -37,13 +36,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            Debug.Log("velocity = " + rb.velocity);
-            Debug.Log("position = " + rb.position);
-        }
 
-        switch (dashState)
+        /*switch (dashState)
         {
             case DashState.Ready:
                 if (Input.GetKey(KeyCode.LeftShift))
@@ -74,23 +68,14 @@ public class PlayerMovement : MonoBehaviour
                     }
                 }
                 break;
-        }
+        }*/
     }
 
     void FixedUpdate()
     {
-        playerController.Inputs.Transfo1top.started += Action_started;
-        /*var left = 0f;
-        left = playerController.Inputs.Left.ReadValue<float>();
-        Debug.Log(left);*/
-
-        float x = Input.GetAxis("Horizontal");
+        float x = moveActionReference.action.ReadValue<float>();
         x *= _speedMultiplier;
-        if ((Input.GetAxis("Jump") > 0) && (_canJump))
-        {
-            rb.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
-            _canJump = false;
-        }
+
         rb.velocity = new Vector2(x, rb.velocity.y);
     }
 
@@ -166,8 +151,12 @@ public class PlayerMovement : MonoBehaviour
         Cooldown
     }
 
-    private void Action_started(InputAction.CallbackContext aaa)
+    public void Jump(InputAction.CallbackContext ctx)
     {
-        Debug.Log("bird");
+        if (ctx.performed && (_canJump))
+        {
+            rb.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
+            _canJump = false;
+        }
     }
 }

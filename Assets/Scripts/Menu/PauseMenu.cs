@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -10,21 +11,11 @@ public class PauseMenu : MonoBehaviour
     public bool settingsMenuIsOpen = false;
     private void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Escape))
-        {
-            if(!settingsMenuIsOpen)
-            {
-                if (pauseMenuIsOpen)
-                    pauseMenuIsOpen = false;
-                else
-                    pauseMenuIsOpen = true;
-            }
-        }
-
-        if(pauseMenuIsOpen)
-            pauseMenu.SetActive(true);
-        else
-            pauseMenu.SetActive(false);
+        if (Input.GetKeyUp(KeyCode.Escape))
+            if (pauseMenuIsOpen)
+                pauseMenu.SetActive(true);
+            else
+                pauseMenu.SetActive(false);
     }
 
     public void CloseMenu()
