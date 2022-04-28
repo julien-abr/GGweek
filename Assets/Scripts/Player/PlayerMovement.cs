@@ -1,107 +1,146 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
+
+//
+// J'ai tout mis dans ce script pour le moment, je m'occuperais de dï¿½couper dans des scripts diffï¿½rents lorsque j'aurais ï¿½tabli les mï¿½caniques gï¿½nï¿½rales :)
+//
 public class PlayerMovement : MonoBehaviour
 {
-    // Maintenant on déclare nos variables
-    [Header("For Variables")]
-    public float moveSpeed = 5f;
-    public float jumpForce = 8f;
-    private float maxSpeed;
+    public DashState dashState;
+    private float jump = 7.75f;
+    //private string playerMode = "default";
+    private bool _canJump = true;
+    private float dashTimer;
+    private float dashLength = 20f;
 
-    [Header("For GroundCheck")]
-    [SerializeField] bool isJumping;
-    [SerializeField] bool isGrounded;
-    [SerializeField] bool isRunning;
-    [SerializeField] bool isFacingRight = true;
-    [SerializeField] Transform groundCheck;
-    [SerializeField] float groundCheckRadius;
-    [SerializeField] LayerMask collisionLayers;
+    public Vector2 savedVelocity;
 
-    [Header("For Sound")]
 
-    private Rigidbody2D rb;
-    private SpriteRenderer skin;
-    private Animator anim;
-    private Collider2D monCollider;
+    SpriteRenderer sr;
+    Rigidbody2D rb;
+
+    private float _speedMultiplier = 11f;
 
     void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
-        skin = gameObject.GetComponent<SpriteRenderer>();
-        monCollider = gameObject.GetComponent<Collider2D>();
-        anim = gameObject.GetComponent<Animator>();
-
-        rb.freezeRotation = true;
-
-        maxSpeed = moveSpeed;
+        rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+        
     }
 
-
-    void Update()
+    private void Update()
     {
-        jumpCheck();
-
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayers);
-
-        if (Input.GetButtonDown("Jump") && isJumping)
+        if (Input.GetKeyDown(KeyCode.T))
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            Debug.Log("velocity = " + rb.velocity);
+            Debug.Log("position = " + rb.position);
         }
 
-        if (Input.GetAxisRaw("Horizontal") != 0 && isGrounded)
+        switch (dashState)
         {
-            anim.SetBool("isRunning", true);
-        }
-        else
-            anim.SetBool("isRunning", false);
-
-        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y);
-
-        if (Input.GetAxisRaw("Horizontal") < 0 && isFacingRight)
-        {
-            Flip();
-        }
-        else if (Input.GetAxisRaw("Horizontal") > 0 && !isFacingRight)
-        {
-            Flip();
-        }
-    }
-
-    void jumpCheck()
-    {
-        if (isGrounded == true)
-        {
-            isJumping = true;
-            anim.SetBool("jump", false);
-        }
-        else
-        {
-            isJumping = false;
-            anim.SetBool("jump", true);
+            case DashState.Ready:
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    savedVelocity = rb.velocity;
+                    rb.velocity = new Vector2(rb.velocity.x * 3f, rb.velocity.y);
+                    dashState = DashState.Dashing;
+                }
+                break;
+            case DashState.Dashing:
+                {
+                    dashTimer = Time.deltaTime * 10;
+                    if (dashTimer >= dashLength)
+                    {
+                        dashTimer = dashLength;
+                        rb.velocity = savedVelocity;
+                        dashState = DashState.Cooldown;
+                    }
+                }
+                break;
+            case DashState.Cooldown:
+                {
+                    dashTimer -= Time.deltaTime;
+                    if (dashTimer <= 0)
+                    {
+                        dashTimer = 0;
+                        dashState = DashState.Ready;
+                    }
+                }
+                break;
         }
     }
 
-    void Flip()
+    void FixedUpdate()
     {
-        isFacingRight = !isFacingRight;
-        transform.Rotate(0, 180, 0);
+        float x = Input.GetAxis("Horizontal");
+        x *= _speedMultiplier;
+        if ((Input.GetAxis("Jump") > 0) && (_canJump))
+        {
+            rb.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
+            _canJump = false;
+        }
+        rb.velocity = new Vector2(x, rb.velocity.y);
     }
 
-    public void TakeSlow(float amount, float duration)
+    private void TurnToBird(int formTime)
     {
-        moveSpeed -= amount;
-        StartCoroutine(SlowDuration(duration));
+        sr.color = Color.cyan;
+        jump = 11f  ;
+        StartCoroutine(BackToHuman(formTime));
     }
 
-    IEnumerator SlowDuration(float duration)
+    private void TurnToBoar(int formTime)
     {
-        yield return new WaitForSeconds(duration);
-        moveSpeed = maxSpeed;
+        sr.color = Color.black;
+        StartCoroutine(BackToHuman(formTime));
     }
-    private void OnDrawGizmos()
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        if (collision.gameObject.CompareTag("ground"))
+        {
+            _canJump = true;
+            Debug.Log("replenished jump");
+            _speedMultiplier = 11f;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("ground"))
+        {
+            _canJump = false;
+            _speedMultiplier = 7f;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("BirdBonus"))
+        {
+            TurnToBird(5);
+            Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("BoarBonus"))
+        {
+            TurnToBoar(5);
+            Destroy(collision.gameObject);
+        }
+    }
+
+    IEnumerator BackToHuman(int timeToWait)
+    {
+        yield return new WaitForSeconds(timeToWait);
+        sr.color = Color.white;
+        jump = 7.75f;
+    }
+
+    public enum DashState
+    {
+        Ready,
+        Dashing,
+        Cooldown
     }
 }
