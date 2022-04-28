@@ -1,0 +1,348 @@
+fileFormatVersion: 2
+guid: 2d4a4fdd435308f469104a741c7255eb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5438099044131615788
+    second: sanglier_0
+  - first:
+      213: -1019033412368177835
+    second: sanglier_1
+  - first:
+      213: 2566321238290862099
+    second: sanglier_2
+  - first:
+      213: 8241388787217933325
+    second: sanglier_3
+  - first:
+      213: -8677582577694898800
+    second: sanglier_4
+  - first:
+      213: -4937320169715997119
+    second: sanglier_5
+  - first:
+      213: -7516523566735275638
+    second: sanglier_6
+  - first:
+      213: -4732148658395185148
+    second: sanglier_7
+  - first:
+      213: 3558482891784046730
+    second: sanglier_8
+  - first:
+      213: 8631772889274405961
+    second: sanglier_9
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sanglier_0
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 872
+        width: 294
+        height: 138
+      alignment: 9
+      pivot: {x: 0.926555, y: 0.8776621}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dbc42d4bbdf784b0800000000000000
+      internalID: -5438099044131615788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sanglier_1
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 727
+        width: 312
+        height: 289
+      alignment: 9
+      pivot: {x: 0.68792313, y: 0.86630917}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5556a81b28aabd1f0800000000000000
+      internalID: -1019033412368177835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sanglier_2
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 677
+        width: 232
+        height: 339
+      alignment: 9
+      pivot: {x: 0.5280809, y: 0.88915026}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3101edbb1976d9320800000000000000
+      internalID: 2566321238290862099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sanglier_3
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 684
+        width: 61
+        height: 85
+      alignment: 9
+      pivot: {x: 0.7135959, y: 0.19342902}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d04230eef6b4f5270800000000000000
+      internalID: 8241388787217933325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sanglier_4
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 684
+        width: 75
+        height: 76
+      alignment: 9
+      pivot: {x: 0.26112935, y: 0.17855594}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09580631f98039780800000000000000
+      internalID: -8677582577694898800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sanglier_5
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 381
+        width: 355
+        height: 231
+      alignment: 9
+      pivot: {x: 0.18803057, y: 0.40834382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 146e4b5f67d1b7bb0800000000000000
+      internalID: -4937320169715997119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sanglier_6
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 367
+        width: 430
+        height: 259
+      alignment: 9
+      pivot: {x: 0.5000003, y: 0.4371174}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8944eae3a1ffa790800000000000000
+      internalID: -7516523566735275638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sanglier_7
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 193
+        width: 309
+        height: 158
+      alignment: 9
+      pivot: {x: 0.08361004, y: 0.7577001}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40083000ed7045eb0800000000000000
+      internalID: -4732148658395185148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sanglier_8
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 65
+        width: 217
+        height: 259
+      alignment: 9
+      pivot: {x: 0.60507554, y: 0.90245}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a88c7102655426130800000000000000
+      internalID: 3558482891784046730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sanglier_9
+      rect:
+        serializedVersion: 2
+        x: 757
+        y: 39
+        width: 262
+        height: 285
+      alignment: 9
+      pivot: {x: 0.19540359, y: 0.8771645}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9445c0fa5b73ac770800000000000000
+      internalID: 8631772889274405961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
