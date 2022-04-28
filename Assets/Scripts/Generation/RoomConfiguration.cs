@@ -49,14 +49,20 @@ public class RoomConfiguration : MonoBehaviour
 
         var nextRoomWithDoor = CheckNextRooms(coord);
 
-        foreach (Open open in nextRoomWithDoor)
+        if(nextRoomWithDoor != null)
         {
-            Room.FindMatch(open);
+            var roomAround = new List<Open>();
+
+            foreach (Open open in nextRoomWithDoor)
+            {
+                Room.FindMatch(open);
+                roomAround.Add(open);
+            }
         }
 
         var targetedRoomConf = RoomConfigurations
             .Where(i => i.Opens.Contains(neededOpen))
-            .Where(i => true /*!i.Opens.Contains */)
+            //.Where(i => !i.Opens.Contains()
             .ToList()
             .PickRandom();
 
@@ -70,19 +76,29 @@ public class RoomConfiguration : MonoBehaviour
         return true;
     }
 
-    private Open[] CheckNextRooms(Vector2Int coord)
+    private List<Open> CheckNextRooms(Vector2Int coord)
     {
+        var roomAround =  new List<Open>();
         foreach(Room room in Rooms)
-        {
-            if(room.Coord == new Vector2Int(coord.x + 1, coord.y) || 
-                room.Coord == new Vector2Int(coord.x - 1, coord.y) || 
-                room.Coord == new Vector2Int(coord.x, coord.y + 1) || 
-                room.Coord == new Vector2Int(coord.x, coord.y - 1))
-                return room.roomConf.Opens;
-            else 
-                return null;
+        {        
+            if (room.Coord == new Vector2Int(coord.x + 1, coord.y))
+                if (room.roomConf.Opens.Contains<Open>(Open.WEST))
+                    roomAround.Add(Open.WEST);
+            if (room.Coord == new Vector2Int(coord.x - 1, coord.y))
+                if (room.roomConf.Opens.Contains<Open>(Open.EAST))
+                    roomAround.Add(Open.EAST);
+            if (room.Coord == new Vector2Int(coord.x, coord.y + 1))
+                if (room.roomConf.Opens.Contains<Open>(Open.SOUTH))
+                    roomAround.Add(Open.SOUTH);
+            if (room.Coord == new Vector2Int(coord.x, coord.y - 1))
+                if (room.roomConf.Opens.Contains<Open>(Open.NORTH))
+                    roomAround.Add(Open.NORTH);      
         }
-        return null;
+
+        if (roomAround.Count == 0)
+            return null;
+        else
+            return roomAround;
     }
 
 #if UNITY_EDITOR

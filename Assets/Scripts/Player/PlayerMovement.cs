@@ -88,6 +88,17 @@ public class PlayerMovement : MonoBehaviour
         transform.Rotate(0, 180, 0);
     }
 
+    public void TakeSlow(float amount, float duration)
+    {
+        moveSpeed -= amount;
+        StartCoroutine(SlowDuration(duration));
+    }
+
+    IEnumerator SlowDuration(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        moveSpeed = maxSpeed;
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
