@@ -38,7 +38,7 @@ public class RoomConfiguration : MonoBehaviour
         Rooms.Clear();
 
         //Instantiate(_roomConfigurations.PickRandom().Rooms.PickRandom(), _root);
-        TryGenerateRoom(new Vector2Int(0, 0), Open.EAST, 5);
+        TryGenerateRoom(new Vector2Int(0, 0), Open.WEST, 5);
     }
 
     public bool TryGenerateRoom(Vector2Int coord, Open neededOpen, int currentGenerationValue)
@@ -60,13 +60,13 @@ public class RoomConfiguration : MonoBehaviour
 
         var targetedRoomConf = RoomConfigurations
             .Where(i => i.Opens.Contains(neededOpen))
-            //.Where(i => {
-            //    foreach(var el in roomAround)
-            //    {
-            //        if(i.Opens.Contains(el)) return true;
-            //    }
-            //    return false;
-            //})
+            .Where(i => {
+                foreach(var el in roomAround)
+                {
+                   if(i.Opens.Contains(el)) return false;
+                }
+                return true;
+            })
             .ToList()
             .PickRandom();
 
@@ -74,7 +74,7 @@ public class RoomConfiguration : MonoBehaviour
             .Rooms
             .PickRandom();
 
-        var go = Instantiate(myNewRoom, new Vector3(coord.x * _roomSize.x, coord.y * _roomSize.y, 0), Quaternion.identity, _root);
+        var go = Instantiate(myNewRoom, new Vector3(coord.x * _roomSize.x, coord.y * _roomSize.y, 3), Quaternion.identity, _root);
         Rooms.Add(go.GetComponent<Room>());
         go.GetComponent<Room>().Generate(this, targetedRoomConf, currentGenerationValue - 1, coord);
         return true;
@@ -82,39 +82,28 @@ public class RoomConfiguration : MonoBehaviour
 
     private List<Open> CheckNextRooms(Vector2Int coord)
     {
-        var roomAround =  new List<Open>();
+        var noDoorRoomAround =  new List<Open>();
         foreach(Room room in Rooms)
         {        
             if (room.Coord == new Vector2Int(coord.x + 1, coord.y))
-                if (room.roomConf.Opens.Contains<Open>(Open.WEST))
-                    roomAround.Add(Open.WEST);
+                if (!room.roomConf.Opens.Contains<Open>(Open.WEST))
+                    noDoorRoomAround.Add(Open.WEST);
             if (room.Coord == new Vector2Int(coord.x - 1, coord.y))
-                if (room.roomConf.Opens.Contains<Open>(Open.EAST))
-                    roomAround.Add(Open.EAST);
+                if (!room.roomConf.Opens.Contains<Open>(Open.EAST))
+                    noDoorRoomAround.Add(Open.EAST);
             if (room.Coord == new Vector2Int(coord.x, coord.y + 1))
-                if (room.roomConf.Opens.Contains<Open>(Open.SOUTH))
-                    roomAround.Add(Open.SOUTH);
+                if (!room.roomConf.Opens.Contains<Open>(Open.SOUTH))
+                    noDoorRoomAround.Add(Open.SOUTH);
             if (room.Coord == new Vector2Int(coord.x, coord.y - 1))
-                if (room.roomConf.Opens.Contains<Open>(Open.NORTH))
-                    roomAround.Add(Open.NORTH);      
+                if (!room.roomConf.Opens.Contains<Open>(Open.NORTH))
+                    noDoorRoomAround.Add(Open.NORTH);      
         }
 
-        if (roomAround.Count == 0)
+        if (noDoorRoomAround.Count == 0)
             return null;
         else
-            return roomAround;
+            return noDoorRoomAround;
     }
-
-#if UNITY_EDITOR
-
-    //private void OnValidate()
-    //{
-    //    GenerateFullMap(false);
-    //}
-
-#endif
-
-
 }
 
 

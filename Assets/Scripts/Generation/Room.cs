@@ -33,13 +33,13 @@ public class Room : MonoBehaviour
         }
     }
 
-    internal void Generate(RoomConfiguration roomConfiguration, RoomConf initialRoom, int generationNumber, Vector2Int coord)
+    internal void Generate(RoomConfiguration roomConfiguration, RoomConf room, int generationNumber, Vector2Int coord)
     {
-        roomConf = initialRoom;
+        roomConf = room;
         if (generationNumber == 0) return;
         Coord = coord;
 
-        foreach(var opens in initialRoom.Opens)
+        foreach(var opens in room.Opens)
         {
             var matchingValue = FindMatch(opens);
             var result = roomConfiguration.TryGenerateRoom(

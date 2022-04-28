@@ -32,6 +32,12 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private Collider2D monCollider;
 
+    [Header("Transformation")]
+    [SerializeField] GameObject graphics;
+    [SerializeField] GameObject chameauGraphics;
+    [SerializeField] GameObject sanglierGraphics;
+    private bool canTransfo = true;
+
     // Premi�re fonction qui aura lieu qu'une seule fois, quand on lancera le jeu
     void Start()
     {
@@ -89,6 +95,19 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetAxisRaw("Horizontal") > 0 && !isFacingRight)
         {
             Flip();
+        }
+
+
+        if(Input.GetKeyDown(KeyCode.A)) //Transfo1
+        {
+            if(canTransfo)
+                Chameau();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E)) //Transfo1
+        {
+            if (canTransfo)
+                Sanglier();
         }
     }
 
@@ -152,5 +171,31 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator SlowDuration(float dur)
     {
         yield return new WaitForSeconds(dur);
+    }
+
+    private void Chameau()
+    {
+        foreach (Transform child in graphics.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+
+        var go = Instantiate(chameauGraphics, transform.position, Quaternion.identity) as GameObject;
+        go.transform.parent = graphics.transform;
+
+        transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+    }
+
+    private void Sanglier()
+    {
+        foreach (Transform child in graphics.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+
+        var go = Instantiate(sanglierGraphics, transform.position, Quaternion.identity) as GameObject;
+        go.transform.parent = graphics.transform;
+
+        transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
     }
 }

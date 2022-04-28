@@ -11,6 +11,7 @@ public class EnemyPatrol : MonoBehaviour
     private Vector3 limiteGauchePosition;
     private Rigidbody2D rb;
     private float direction = 1f;
+    private bool canFlip = true;
 
     //private bool canChangeRot = true;
 
@@ -37,22 +38,32 @@ public class EnemyPatrol : MonoBehaviour
         //Si il dépasse sa limite Droite, il se retourne
         if (transform.position.x > limiteDroitePosition.x)
         {
+            canFlip = true;
             direction = -1f;
         }
 
         if (transform.position.x < limiteGauchePosition.x)
         {
+            canFlip = true;
             direction = 1f;
         }
 
         if (direction == 1f)
         {
-            transform.Rotate(0, 180, 0);
+            if (canFlip)
+            {
+                canFlip = false;
+                transform.Rotate(0, 180, 0);
+            }
         }
 
         if (direction == -1f)
         {
-            transform.Rotate(0, 180, 0);
+            if (canFlip)
+            {
+                canFlip = false;
+                transform.Rotate(0, 180, 0);
+            }
         }
 
         rb.velocity = new Vector2(direction * speed, rb.velocity.y);
