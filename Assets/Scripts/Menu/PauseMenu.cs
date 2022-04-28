@@ -11,11 +11,18 @@ public class PauseMenu : MonoBehaviour
     public bool settingsMenuIsOpen = false;
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
-            if (pauseMenuIsOpen)
-                pauseMenu.SetActive(true);
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (settingsMenuIsOpen)
+                pauseMenuIsOpen = false;
             else
-                pauseMenu.SetActive(false);
+                pauseMenuIsOpen = true;
+        }
+
+        if (pauseMenuIsOpen)
+            pauseMenu.SetActive(true);
+        else
+            pauseMenu.SetActive(false);
     }
 
     public void CloseMenu()

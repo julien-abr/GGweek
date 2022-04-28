@@ -1,162 +1,160 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-
-//
-// J'ai tout mis dans ce script pour le moment, je m'occuperais de d�couper dans des scripts diff�rents lorsque j'aurais �tabli les m�caniques g�n�rales :)
-//
 public class PlayerMovement : MonoBehaviour
 {
-    public DashState dashState;
-    [SerializeField] float jump = 7.75f;
-    //private string playerMode = "default";
-    private bool _canJump = true;
-    private float dashTimer;
-    [SerializeField] float dashLength = 20f;
-    [SerializeField] InputActionReference moveActionReference;
+    // Maintenant on déclare nos variables
+    [Header("For Variables")]
+    public float moveSpeed = 5f;
+    public float jumpForce = 8f;
+    private float maxSpeed;
 
-    public Vector2 savedVelocity;
+    [Header("For GroundCheck")]
+    [SerializeField] bool isJumping;
+    [SerializeField] bool isGrounded;
+    [SerializeField] bool isRunning;
+    [SerializeField] bool isFacingRight = true;
+    [SerializeField] Transform groundCheck;
+    [SerializeField] float groundCheckRadius;
+    [SerializeField] LayerMask collisionLayers;
 
+    [Header("For Dashing")]
+    IEnumerator dashCoroutine;
+    private bool isDashing;
+    private bool canDash = true;
+    private float direction = 1;
+    private float normalGravity;
+    [SerializeField] GameObject dashEffect;
 
-    SpriteRenderer sr;
-    Rigidbody2D rb;
+    [Header("For Sound")]
 
-    [SerializeField] float _speedMultiplier = 11f;
-    private float maxSpeedMultiplier = 11f;
+    private Rigidbody2D rb;
+    private SpriteRenderer skin;
+    private Animator anim;
+    private Collider2D monCollider;
 
+    []
 
+    // Premi�re fonction qui aura lieu qu'une seule fois, quand on lancera le jeu
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
-        
+        // On commence par r�cup�rer les composants (ceux qu'on a d�clar� au dessus)
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        normalGravity = rb.gravityScale;
+        skin = gameObject.GetComponent<SpriteRenderer>();
+        monCollider = gameObject.GetComponent<Collider2D>();
+        anim = gameObject.GetComponent<Animator>();
+
+        rb.freezeRotation = true;
+
+        maxSpeed = moveSpeed;
     }
 
-    private void Update()
-    {
 
-        /*switch (dashState)
+    // Fonction principale qui aura lieu en permanence, tout au long du jeu
+    void Update()
+    {
+        jumpCheck();
+
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayers);
+
+        if (Input.GetButtonDown("Jump") && isJumping)
         {
-            case DashState.Ready:
-                if (Input.GetKey(KeyCode.LeftShift))
-                {
-                    savedVelocity = rb.velocity;
-                    rb.velocity = new Vector2(rb.velocity.x * 3f, rb.velocity.y);
-                    dashState = DashState.Dashing;
-                }
-                break;
-            case DashState.Dashing:
-                {
-                    dashTimer = Time.deltaTime * 10;
-                    if (dashTimer >= dashLength)
-                    {
-                        dashTimer = dashLength;
-                        rb.velocity = savedVelocity;
-                        dashState = DashState.Cooldown;
-                    }
-                }
-                break;
-            case DashState.Cooldown:
-                {
-                    dashTimer -= Time.deltaTime;
-                    if (dashTimer <= 0)
-                    {
-                        dashTimer = 0;
-                        dashState = DashState.Ready;
-                    }
-                }
-                break;
-        }*/
-    }
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
 
-    void FixedUpdate()
-    {
-        float x = moveActionReference.action.ReadValue<float>();
-        x *= _speedMultiplier;
 
-        rb.velocity = new Vector2(x, rb.velocity.y);
-    }
+        // On test si le player coure et si c'est le cas on lance l'animation de course
+        if (Input.GetAxisRaw("Horizontal") != 0 && isGrounded)
+            anim.SetBool("isRunning", true);
+      
 
-    private void TurnToBird(int formTime)
-    {
-        sr.color = Color.cyan;
-        jump = 11f  ;
-        StartCoroutine(BackToHuman(formTime));
-    }
+        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y);
 
-    private void TurnToBoar(int formTime)
-    {
-        sr.color = Color.black;
-        StartCoroutine(BackToHuman(formTime));
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("ground"))
+        if (Input.GetKeyDown(KeyCode.Mouse1) && canDash == true)
         {
-            _canJump = true;
-            Debug.Log("replenished jump");
-            _speedMultiplier = 11f;
+            if (dashCoroutine != null) //si il y a plusieurs coroutines de dash en même temps
+            {
+                StopCoroutine(dashCoroutine);
+            }
+            dashCoroutine = Dash(.1f, 5);
+            StartCoroutine(dashCoroutine);
+        }
+
+        if (Input.GetAxisRaw("Horizontal") != 0)
+        {
+            direction = Input.GetAxisRaw("Horizontal");
+        }
+
+        if (Input.GetAxisRaw("Horizontal") < 0 && isFacingRight)
+        {
+            Flip();
+        }
+        else if (Input.GetAxisRaw("Horizontal") > 0 && !isFacingRight)
+        {
+            Flip();
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void FixedUpdate()
     {
-        if (collision.gameObject.CompareTag("ground"))
+        if (isDashing) //lorsque le joueur dash
         {
-            _canJump = false;
-            _speedMultiplier = 7f;
+            anim.SetTrigger("dash");
+            rb.AddForce(new Vector2(direction * 10, 0), ForceMode2D.Impulse);
+            Instantiate(dashEffect, transform.position, Quaternion.identity);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    void jumpCheck() //pour savoir si le joueur peut sauter
     {
-        if (collision.gameObject.CompareTag("BirdBonus"))
+        if (isGrounded == true)
         {
-            TurnToBird(5);
-            Destroy(collision.gameObject);
+            isJumping = true;
+            anim.SetBool("jump", false);
         }
-        else if (collision.gameObject.CompareTag("BoarBonus"))
+        else
         {
-            TurnToBoar(5);
-            Destroy(collision.gameObject);
+            isJumping = false;
+            anim.SetBool("jump", true);
         }
     }
 
-    IEnumerator BackToHuman(int timeToWait)
+    void Flip()
     {
-        yield return new WaitForSeconds(timeToWait);
-        sr.color = Color.white;
-        jump = 7.75f;
+        isFacingRight = !isFacingRight; //on inverse la direction dans laquelle le joueur regarde
+        transform.Rotate(0, 180, 0);
+    }
+    private void OnDrawGizmos() //pour les tracés dans l'editor
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+    }
+
+    IEnumerator Dash(float dashDuration, float dashCooldown)
+    {
+        Vector2 originalVelocity = rb.velocity;
+        isDashing = true;
+        canDash = false;
+        rb.gravityScale = 0;
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(dashDuration);
+        isDashing = false;
+        rb.gravityScale = normalGravity;
+        rb.velocity = originalVelocity;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+
     }
 
     public void TakeSlow(float amount, float duration)
     {
-        _speedMultiplier -= amount;
-        StartCoroutine(SlowCoroutine(duration));
+        moveSpeed -= amount;
+        StartCoroutine(SlowDuration(duration));
     }
-
-    IEnumerator SlowCoroutine(float duration)
+    IEnumerator SlowDuration(float dur)
     {
-        yield return new WaitForSeconds(duration);
-        _speedMultiplier = maxSpeedMultiplier;
-    }
-
-    public enum DashState
-    {
-        Ready,
-        Dashing,
-        Cooldown
-    }
-
-    public void Jump(InputAction.CallbackContext ctx)
-    {
-        if (ctx.performed && (_canJump))
-        {
-            rb.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
-            _canJump = false;
-        }
+        yield return new WaitForSeconds(dur);
     }
 }

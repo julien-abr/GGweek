@@ -262,7 +262,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6505060977801478545}
   - component: {fileID: 50856072374454370}
-  - component: {fileID: 1295010811048566537}
   - component: {fileID: 6334867046959046005}
   m_Layer: 0
   m_Name: RoomBR
@@ -279,7 +278,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6505060977801478550}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -319,24 +318,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 11, y: 9}
   m_EdgeRadius: 0
---- !u!114 &1295010811048566537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6505060977801478550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d13711191273d884a9c683e32cc1c00a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  level1PossibleRooms: []
-  level1EscapeRooms: []
-  level0PossibleRooms: []
-  level0EscapeRooms: []
-  currentLevel: 0
-  needANextRoom: 0
 --- !u!114 &6334867046959046005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,6 +330,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 927fede3561f99941847fb4bafdafd2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomConf:
+    Reference: {fileID: 0}
+    Opens: 
+    Rooms: []
 --- !u!1 &6922495027910253099
 GameObject:
   m_ObjectHideFlags: 0

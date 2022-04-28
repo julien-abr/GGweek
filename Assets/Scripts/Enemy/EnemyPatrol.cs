@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class enemiPatrol : MonoBehaviour
+public class EnemyPatrol : MonoBehaviour
 {
     //On déclare nos variables
     [SerializeField] float speed = 2f;
@@ -11,7 +11,8 @@ public class enemiPatrol : MonoBehaviour
     private Vector3 limiteGauchePosition;
     private Rigidbody2D rb;
     private float direction = 1f;
-    private SpriteRenderer skin;
+
+    //private bool canChangeRot = true;
 
     [SerializeField] PlayerHealth playerhealth;
 
@@ -19,7 +20,6 @@ public class enemiPatrol : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        skin = GetComponent<SpriteRenderer>();
 
         limiteDroitePosition = transform.position + new Vector3(limiteDroite, 0, 0);
         limiteGauchePosition = transform.position - new Vector3(limiteGauche, 0, 0);
@@ -47,12 +47,10 @@ public class enemiPatrol : MonoBehaviour
 
         if (direction == 1f)
         {
-            skin.flipX = false;
         }
 
         if (direction == -1f)
         {
-            skin.flipX = true;
         }
 
         rb.velocity = new Vector2(direction * speed, rb.velocity.y);
